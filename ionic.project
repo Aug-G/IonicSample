@@ -4,6 +4,6 @@
   "proxies": [
       {
         "path": "/v1",
-        "proxyUrl": "http://news-at.zhihu.com/api/4"
+        "proxyUrl": "http://180.169.17.3:8081/civil/json"
       }]
 }

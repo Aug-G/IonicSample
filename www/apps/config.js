@@ -6,8 +6,15 @@ angular.module('civil.config', [])
 .factory('config', config);
 
 function config(){
+    var api = getAPI();
     return {
-       //API:'v1'
-       API:"http://news-at.zhihu.com/api/4"
+       API:api
     };
+    function getAPI(){
+        if (!ionic.Platform.isWebView()){
+            return 'v1';
+        }else{
+            return 'http://180.169.17.3:8081/civil/json';
+        }
+    }
 }
