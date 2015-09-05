@@ -10,16 +10,11 @@
     function getRoutes($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
         $stateProvider
 
-            .state('login', {
-                url: '/login',
-                templateUrl: 'apps/home/templates/login.html',
-                controller: 'LoginCtrl'
-            })
-
             // setup an abstract state for the tabs directive
             .state('tab', {
                 url: '',
                 abstract: true,
+                controller: 'AppCtrl',
                 templateUrl: 'templates/tabs.html'
             })
 
@@ -27,7 +22,6 @@
 
             .state('tab.home', {
                 url: '/home',
-                login_required: true,
                 views: {
                     'tab-home': {
                         templateUrl: 'apps/home/templates/index.html',
@@ -76,7 +70,7 @@
             });
 
         // if none of the above states are matched, use this as the fallback
-        $urlRouterProvider.otherwise('/login');
+        $urlRouterProvider.otherwise('/home');
         $ionicConfigProvider.tabs.position('bottom');
     }
 })();
