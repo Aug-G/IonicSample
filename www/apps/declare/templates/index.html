@@ -1,23 +1,48 @@
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-<ion-view view-title="Account">
+<ion-view view-title="工程申报">
   <ion-content>
     <ion-list>
-    <ion-toggle  ng-model="settings.enableFriends">
-        Enable Friends
-    </ion-toggle>
+      <ion-item class="item-divider">申报信息</ion-item>
+      <ion-item class="item-icon-list" ui-sref="tab.declare-object({type: 'floor', action:'declare'})">
+        <i class="icon ion-arrow-right-b"></i>
+        底板申报
+      </ion-item>
+      <ion-item class="item-icon-list" ui-sref="tab.declare-object({type: 'wall', action:'declare'})">
+        <i class="icon ion-arrow-right-b"></i>
+        墙板申报
+      </ion-item>
+      <ion-item class="item-icon-list" ui-sref="tab.declare-object({type: 'roof', action:'declare'})">
+        <i class="icon ion-arrow-right-b"></i>
+        顶板申报
+      </ion-item>
+      <ion-item class="item-icon-list" ui-sref="tab.declare-object({type: 'struct', action:'declare'})">
+        <i class="icon ion-arrow-right-b"></i>
+        结构验收申报
+      </ion-item>
+      <ion-item class="item-icon-list" ui-sref="tab.declare-object({type: 'complet', action:'declare'})">
+        <i class="icon ion-arrow-right-b"></i>
+        竣工验收申报
+      </ion-item>
+
+
+
+
+      <ion-item class="item-divider">添加申报</ion-item>
+      <ion-item ui-sref="tab.declare-object-new({type: 'floor'})">
+        <i class="icon ion-plus"></i>添加底板申报
+      </ion-item>
+       <ion-item ui-sref="tab.declare-object-new({type: 'wall'})">
+        <i class="icon ion-plus"></i>添加墙板申报
+      </ion-item>
+      <ion-item ui-sref="tab.declare-object-new({type: 'roof'})">
+        <i class="icon ion-plus"></i>添加顶板申报
+      </ion-item>
+      <ion-item ui-sref="tab.declare-object-new({type: 'struct'})">
+        <i class="icon ion-plus"></i>添加结构验收申报
+      </ion-item>
+      <ion-item ui-sref="tab.declare-object-new({type: 'complet'})">
+        <i class="icon ion-plus"></i>添加竣工验收申报
+      </ion-item>
     </ion-list>
   </ion-content>
 </ion-view>

@@ -2,7 +2,7 @@
  * Created by august on 15/8/20.
  */
 'use strict';
-angular.module('civil.home', [])
+angular.module('civil.home')
     .factory('HomeService', HomeService);
 
 HomeService.$inject = ['$http', 'config', '$rootScope'];

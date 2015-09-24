@@ -2,6 +2,8 @@
     <ion-content>
 
         <ion-list type="card" can-swipe="false">
+            <ion-item>
+            </ion-item>
             <ion-item class="item-remove-animate item-thumbnail-right item-divider" ng-repeat="story in data.stories" type="item-text-wrap" href="#/home/{{story.id}}">
                 <img ng-src="{{story.images[0]}}">
                 <h2>{{story.title}}</h2>

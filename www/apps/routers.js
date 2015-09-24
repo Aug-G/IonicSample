@@ -49,6 +49,34 @@
                     }
                 }
             })
+            .state('tab.declare-object', {
+                url: '/declare/:type/:action',
+                views: {
+                    'tab-declare': {
+                        templateUrl: 'apps/declare/templates/object_list.html',
+                        controller: 'DeclareObjectCtrl'
+                    }
+                }
+            })
+
+            .state('tab.declare-object-new', {
+                url: '/declare/:type/new',
+                views: {
+                    'tab-declare': {
+                        templateUrl: 'apps/declare/templates/object_new.html',
+                        controller: 'DeclareObjectNewCtrl'
+                    }
+                }
+            })
+            .state('tab.declare-object-detail', {
+                url: '/declare/:type/:id',
+                views: {
+                    'tab-declare': {
+                        templateUrl: 'apps/declare/templates/object_detail.html',
+                        controller: 'DeclareObjectDetailCtrl'
+                    }
+                }
+            })
             .state('tab.management', {
                 url: '/management',
                 views: {
@@ -58,7 +86,34 @@
                     }
                 }
             })
+            .state('tab.management-object', {
+                url: '/management/:type/:action',
+                views: {
+                    'tab-management': {
+                        templateUrl: 'apps/declare/templates/object_list.html',
+                        controller: 'DeclareObjectCtrl'
+                    }
+                }
+            })
 
+            .state('tab.management-object-new', {
+                url: '/management/:type/new',
+                views: {
+                    'tab-management': {
+                        templateUrl: 'apps/declare/templates/object_new.html',
+                        controller: 'DeclareObjectNewCtrl'
+                    }
+                }
+            })
+            .state('tab.management-object-detail', {
+                url: '/management/:type/:id',
+                views: {
+                    'tab-management': {
+                        templateUrl: 'apps/declare/templates/object_detail.html',
+                        controller: 'DeclareObjectDetailCtrl'
+                    }
+                }
+            })
             .state('tab.report', {
                 url: '/report',
                 views: {

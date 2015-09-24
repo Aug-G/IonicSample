@@ -4,6 +4,6 @@
   "proxies": [
       {
         "path": "/v1",
-        "proxyUrl": "http://localhost:8080/json"
+        "proxyUrl": "http://localhost:8080/api"
       }]
 }

@@ -20,11 +20,11 @@ function AppCtrl($scope, $state, $ionicModal){
     $scope.$on('$destroy', function(){
        $scope.loginModal.remove();
     });
+
 }
 
 
-function HomeCtrl($scope, HomeService){
-    console.log('sdasd');
+function HomeCtrl($scope, HomeService, $cordovaImagePicker){
     $scope.getData = function(){
         HomeService.getUserInfo().then(function(data){
             $scope.data = data;
@@ -32,16 +32,28 @@ function HomeCtrl($scope, HomeService){
         });
     };
     $scope.getData();
+
+    $scope.imagePick = function() {
+        var options = {
+            maximumImagesCount: 10,
+            width: 800,
+            height: 800,
+            quality: 80
+        };
+
+        $cordovaImagePicker.getPictures(options)
+            .then(function (results) {
+                for (var i = 0; i < results.length; i++) {
+                    console.log('Image URI: ' + results[i]);
+                }
+            }, function (error) {
+                // error getting photos
+            });
+    }
 }
 
-function HomeDetailCtrl($scope, $stateParams, HomeService){
-    $scope.getData = function(){
-        HomeService.getDetailData($stateParams.id).then(function(data){
-            $scope.item = data;
-        })
-    };
+function HomeDetailCtrl($scope, $stateParams, HomeService, $cordovaImagePicker){
 
-    $scope.getData();
 }
 
 LoginCtrl.$inject = ['$scope', 'Auth', '$state'];

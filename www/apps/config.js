@@ -14,7 +14,7 @@ function config(){
         if (!ionic.Platform.isWebView()){
             return 'v1';
         }else{
-            return 'http://180.169.17.3:8081/civil/json';
+            return 'http://localhost:8080/api';
         }
     }
 }

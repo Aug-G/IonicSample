@@ -1,0 +1,22 @@
+<ion-view view-title="新增{{type_name}}申报">
+    <ion-content>
+        <ion-list>
+            <form>
+            <label class="item item-input item-select">
+                <div class="input-label">
+                    选择项目
+                </div>
+                <select ng-model="object.project" ng-options="project.name for project in projects"></select>
+            </label>
+            <label class="item item-input">
+                <input type="text" placeholder="轴线位置" ng-model="object.addr" />
+            </label>
+            <div class="padding"><button class="button button-block button-stable" ng-click="imagePick()">选择图片</button></div>
+            <div class="padding">
+                <button class="button button-block button-stable" ng-click="submit()">提交</button>
+            </div>
+            </form>
+        </ion-list>
+    </ion-content>
+
+</ion-view>

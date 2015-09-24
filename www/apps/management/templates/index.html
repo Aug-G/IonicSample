@@ -1,9 +1,26 @@
-<ion-view view-title="Account">
+<ion-view view-title="工程管理">
   <ion-content>
     <ion-list>
-    <ion-toggle  ng-model="settings.enableFriends">
-        Enable Friends
-    </ion-toggle>
-    </ion-list>
+      <ion-item class="item-divider">管理信息</ion-item>
+      <ion-item class="item-icon-list" ui-sref="tab.management-object({type: 'floor', action: 'management'})">
+        <i class="icon ion-arrow-right-b"></i>
+        底板管理
+      </ion-item>
+      <ion-item class="item-icon-list" ui-sref="tab.management-object({type: 'wall', action: 'management'})">
+        <i class="icon ion-arrow-right-b"></i>
+        墙板管理
+      </ion-item>
+      <ion-item class="item-icon-list" ui-sref="tab.management-object({type: 'roof', action: 'management'})">
+        <i class="icon ion-arrow-right-b"></i>
+        顶板管理
+      </ion-item>
+      <ion-item class="item-icon-list" ui-sref="tab.management-object({type: 'struct', action: 'management'})">
+        <i class="icon ion-arrow-right-b"></i>
+        结构验收管理
+      </ion-item>
+      <ion-item class="item-icon-list" ui-sref="tab.management-object({type: 'complet', action: 'management'})">
+        <i class="icon ion-arrow-right-b"></i>
+        竣工验收管理
+      </ion-item>
   </ion-content>
 </ion-view>

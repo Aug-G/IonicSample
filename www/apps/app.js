@@ -30,7 +30,7 @@ angular.module('civil', ['ionic', 'ngCordova', 'http-auth-interceptor', 'civil.c
 
         });
         $rootScope.$on('loading:show', function () {
-            $ionicLoading.show({template: 'loading'})
+            $ionicLoading.show({template: '正在加载...'})
         });
 
         $rootScope.$on('loading:hide', function () {
@@ -41,12 +41,10 @@ angular.module('civil', ['ionic', 'ngCordova', 'http-auth-interceptor', 'civil.c
             var token = $localstorage.get('authorizationToken');
             console.log(token);
             if(!token || token == 'undefined'){
-                console.log(token);
                 $timeout(function(){
                     $rootScope.$broadcast('event:auth-loginRequired');
                 });
             }else{
-                console.log(token);
                 $http.defaults.headers.common['Authorization'] = token;
             }
         });

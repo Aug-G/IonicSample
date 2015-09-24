@@ -1,0 +1,13 @@
+<ion-view title="{{type_name}}">
+    <ion-content>
+        <ion-list>
+            <ion-item class="item-icon-list" ng-repeat="object in objects"
+                      ui-sref="tab.{{action}}-object-detail({type: type, id: object.id})">
+                <h2>{{object.project_name}}</h2>
+
+                <p>{{object.addr}}</p>
+            </ion-item>
+        </ion-list>
+        <ion-infinite-scroll ng-if="can_be_load" on-infinite="getObjects()"></ion-infinite-scroll>
+    </ion-content>
+</ion-view>
