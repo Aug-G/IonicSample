@@ -1,0 +1,26 @@
+<div class="modal" ng-controller="DeclareObjectAudit">
+    <ion-header-bar class="bar-stable">
+        <h1 class="title">审核{{type_name}}</h1>
+        <div class="buttons">
+            <button class="button" ng-click="closeModal()">关闭</button>
+        </div>
+    </ion-header-bar>
+    <ion-content has-header="true" padding="true">
+        <form class="list">
+            <div class="item item-divider">
+                审核数据
+            </div>
+            <ion-radio ng-model="object.status" ng-if="object.status <= 1" ng-value="2">通过</ion-radio>
+            <ion-radio ng-model="object.status" ng-if="object.status <= 1" ng-value="1">不通过</ion-radio>
+            <ion-radio ng-model="object.status" ng-if="object.status > 1" ng-value="3">退回</ion-radio>
+            <ion-radio ng-model="object.status" ng-if="object.status > 1" ng-value="4">归档</ion-radio>
+
+            <label class="item item-input">
+                <textarea  required ng-model="object.description" rows="8" cols="10"></textarea>
+            </label>
+            <div class="padding">
+                <button class="button button-block button-stable" ng-click="audit()">提交</button>
+            </div>
+        </form>
+    </ion-content>
+</div>

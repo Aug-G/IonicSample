@@ -16,7 +16,8 @@
             getObjectDetail:getObjectDetail,
             getObjectFiles:getObjectFiles,
             setObject:setObject,
-            setObjectImage:setObjectImage
+            setObjectImage:setObjectImage,
+            auditObject:auditObject
         };
 
         function getProjects(){
@@ -58,6 +59,12 @@
             };
             console.log(options);
             return $cordovaFileTransfer.upload(config.API+'/declare/'+type+'/upload/'+id, image, options).then(function(response){
+                return response.data;
+            }).catch(error);
+        }
+
+        function auditObject(type, id, object){
+            return $http.post(config.API+'/declare/'+type+'/audit/'+id, object).then(function(response){
                 return response.data;
             }).catch(error);
         }

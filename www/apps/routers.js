@@ -97,7 +97,7 @@
             })
 
             .state('tab.management-object-new', {
-                url: '/management/:type/new',
+                url: '/management/:typ/new',
                 views: {
                     'tab-management': {
                         templateUrl: 'apps/declare/templates/object_new.html',

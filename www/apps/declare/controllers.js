@@ -8,6 +8,7 @@
         .controller('DeclareObjectCtrl', DeclareObjectCtrl)
         .controller('DeclareObjectNewCtrl', DeclareObjectNewCtrl)
         .controller('DeclareObjectDetailCtrl', DeclareObjectDetailCtrl)
+        .controller('DeclareObjectAudit', DeclareObjectAudit)
 
     function DeclareCtrl($scope) {
 
@@ -19,7 +20,7 @@
         'wall': '墙板',
         'roof': '顶板',
         'struct': '结构验收',
-        'complte': '竣工验收'
+        'complet': '竣工验收'
     };
 
     var ACTION_TYPE = {
@@ -27,7 +28,7 @@
         'management': '管理'
     };
 
-    function DeclareObjectCtrl($scope, DeclareService, $stateParams) {
+    function DeclareObjectCtrl($scope, DeclareService, $stateParams, $rootScope) {
         $scope.type = $stateParams.type;
         $scope.action = $stateParams.action;
         $scope.type_name = OBJECT_TYPE[$scope.type] + ACTION_TYPE[$scope.action];
@@ -41,20 +42,23 @@
             DeclareService.getObjects($scope.type, $scope.action, page).then(function (data) {
                 if (data.length > 0) {
 
-                    console.log(page);
                     angular.forEach(data, function (item) {
                         $scope.objects.push(item);
                     });
                     page += 1;
                     $scope.$broadcast('scroll.infiniteScrollComplete');
-                    console.log(page);
                 } else {
-                    console.log(page);
                     $scope.can_be_load = false;
                 }
 
             });
         };
+
+        $rootScope.$on('object:listChanged', function() {
+            page = 1;
+            $scope.getObjects();
+        });
+
 
     }
 
@@ -97,7 +101,6 @@
                 if ($scope.images.length > 0) {
                     $timeout(function () {
                         angular.forEach($scope.images, function (image) {
-                            console.log(image);
                             $timeout(function () {
                                 DeclareService.setObjectImage($scope.type, data.id, image).then(function (data) {
                                     console.log(data);
@@ -111,20 +114,19 @@
         };
     }
 
-    function DeclareObjectDetailCtrl($scope, $stateParams, DeclareService, $cordovaImagePicker) {
+    function DeclareObjectDetailCtrl($scope, $stateParams, DeclareService, $cordovaImagePicker, $ionicModal) {
         $scope.type = $stateParams.type;
         $scope.type_name = OBJECT_TYPE[$scope.type];
+        $scope.objectId = $stateParams.id;
         DeclareService.getObjectDetail($stateParams.type, $stateParams.id).then(function (data) {
-            console.log(data);
             $scope.object = data;
         });
 
 
-        $scope.getFiles = function(){
-           DeclareService.getObjectFiles($scope.type, $stateParams.id).then(function(data){
-               console.log(data);
-               $scope.files = data;
-           })
+        $scope.getFiles = function () {
+            DeclareService.getObjectFiles($scope.type, $stateParams.id).then(function (data) {
+                $scope.files = data;
+            })
         };
 
         $scope.getFiles();
@@ -151,5 +153,39 @@
                 });
         };
 
+        $ionicModal.fromTemplateUrl('apps/declare/templates/object_audit.html', function (modal) {
+            $scope.auditModal = modal;
+        }, {
+            scope: $scope,
+            animation: 'slide-in-up',
+            focusFirstInput: true
+        });
+
+        $scope.$on('$destroy', function () {
+            $scope.auditModal.remove();
+        });
+
+        $scope.auditShow = function(){
+            $scope.auditModal.show();
+        }
+
     }
+
+    function DeclareObjectAudit($scope, DeclareService, $state){
+        $scope.audit = function(){
+            var new_obj = {'status':$scope.object.status, 'description': $scope.object.description}
+            DeclareService.auditObject($scope.type, $scope.objectId, new_obj).then(function(data){
+                $scope.$emit('object:listChanged');
+                var action = data.status <=2 ? "declare" : "management";
+                console.log(action);
+                $state.go("tab."+action+"-object", {type:$scope.type, action: action});
+
+            });
+        };
+
+        $scope.closeModal = function () {
+            $scope.auditModal.hide();
+        }
+    }
+
 })();

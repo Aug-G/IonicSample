@@ -8,19 +8,19 @@
             <ion-item class="item-body">
                 <p>{{object.description}}</p>
                 <div class="row" ng-repeat="file in files" ng-if="$index % 3 ===0">
-                    <div class="col col-33" ng-if="$index < files.length" ><img class="full-image" src="{{files[$index].url}}"></div>
-                    <div class="col col-33" ng-if="$index+1  < files.length" ><img class="full-image" src="{{files[$index+1].url}}"></div>
-                    <div class="col col-33" ng-if="$index+2  < files.length" ><img class="full-image" src="{{files[$index+2].url}}"></div>
+                    <div class="col col-33" ng-if="$index < files.length" ><img class="full-image" ng-src="{{files[$index].url}}"></div>
+                    <div class="col col-33" ng-if="$index+1  < files.length" ><img class="full-image" ng-src="{{files[$index+1].url}}"></div>
+                    <div class="col col-33" ng-if="$index+2  < files.length" ><img class="full-image" ng-src="{{files[$index+2].url}}"></div>
                 </div>
             </ion-item>
             <ion-item class="tabs tabs-secondary tabs-icon-left">
-                <a class="tab-item" ng-click="imagePick">
+                <a class="tab-item" ng-click="imagePick()">
                     <i class="icon ion-upload"></i>
                     添加图片
                 </a>
-                <a class="tab-item" href="#">
+                <a class="tab-item" ng-click="auditShow()">
                     <i class="icon ion-chatbox"></i>
-                    Comment
+                    审核
                 </a>
                 <a class="tab-item" href="#">
                     <i class="icon ion-share"></i>
