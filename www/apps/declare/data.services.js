@@ -17,7 +17,8 @@
             getObjectFiles:getObjectFiles,
             setObject:setObject,
             setObjectImage:setObjectImage,
-            auditObject:auditObject
+            auditObject:auditObject,
+            deleteObject:deleteObject
         };
 
         function getProjects(){
@@ -69,6 +70,11 @@
             }).catch(error);
         }
 
+        function deleteObject(type, id){
+            return $http.post(config.API+'/declare/'+type+'/delete/'+id).then(function(response){
+                return response.data;
+            }).catch(error);
+        }
 
         function error(data, status, headers, config){
             $rootScope.$broadcast('event:auth-loginRequired', data, status);

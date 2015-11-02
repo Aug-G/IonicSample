@@ -10,10 +10,10 @@
             <div class="item item-divider">
                 审核数据
             </div>
-            <ion-radio ng-model="object.status" ng-if="object.status <= 1" ng-value="2">通过</ion-radio>
-            <ion-radio ng-model="object.status" ng-if="object.status <= 1" ng-value="1">不通过</ion-radio>
-            <ion-radio ng-model="object.status" ng-if="object.status > 1" ng-value="3">退回</ion-radio>
-            <ion-radio ng-model="object.status" ng-if="object.status > 1" ng-value="4">归档</ion-radio>
+            <ion-radio ng-model="object.status" ng-if="status <= 1" ng-value="2">通过</ion-radio>
+            <ion-radio ng-model="object.status" ng-if="status <= 1" ng-value="1">不通过</ion-radio>
+            <ion-radio ng-model="object.status" ng-if="status > 1" ng-value="3">退回</ion-radio>
+            <ion-radio ng-model="object.status" ng-if="status > 1" ng-value="4">归档</ion-radio>
 
             <label class="item item-input">
                 <textarea  required ng-model="object.description" rows="8" cols="10"></textarea>

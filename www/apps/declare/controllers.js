@@ -54,6 +54,12 @@
             });
         };
 
+        $scope.deleteObj = function(obj, index){
+            DeclareService.deleteObject($scope.type, obj.id).then(function(data){
+                $scope.objects.splice(index, 1);
+            })
+        };
+
         $rootScope.$on('object:listChanged', function() {
             page = 1;
             $scope.getObjects();
@@ -118,8 +124,10 @@
         $scope.type = $stateParams.type;
         $scope.type_name = OBJECT_TYPE[$scope.type];
         $scope.objectId = $stateParams.id;
+
         DeclareService.getObjectDetail($stateParams.type, $stateParams.id).then(function (data) {
             $scope.object = data;
+            $scope.status = data.status;
         });
 
 
